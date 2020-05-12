@@ -29,6 +29,7 @@ class Queue:
 
     def enqueue(self, value):
         # self.storage.append(value)
+        print(value)
         self.storage.add_to_end(value)
         self.size += 1
 

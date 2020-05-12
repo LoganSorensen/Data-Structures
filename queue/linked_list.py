@@ -6,7 +6,6 @@ class Node:
         self.next_node = next_node
 
 
-
     def get_value(self):
         return self.value
 
@@ -14,16 +13,22 @@ class Node:
         return self.next_node
 
     def set_next(self, new_next):
-       # set this node's next_node reference to the passed in node
-       self.next_node = new_next
+        # set this node's next_node reference to the passed in node
+        self.next_node = new_next
+
 
 class LinkedList:
     def __init__(self):
         # first node in the list
         self.head = None
+        # last node in the linked list
+        self.tail = None
 
+    # we don't have access to the end of the linked list
+    # when we want to add to the end, we need to traverse the whole list
+    # O(n)
     def add_to_end(self, value):
-       # regardless of if the list is empty or not, we need to wrap the value in a Node
+        # regardless of if the list is empty or not, we need to wrap the value in a Node
         new_node = Node(value)
         # what if the list is empty?
         if not self.head:
@@ -40,7 +45,7 @@ class LinkedList:
             current.set_next(new_node)
 
     def remove_from_head(self):
-       # what if the list is empty?
+        # what if the list is empty?
         if not self.head:
             return None
         # what if it isn't empty?
