@@ -54,8 +54,12 @@ class DoublyLinkedList:
             self.head = new_node
             self.tail = new_node
         else:
+            # the new node becomes the head of our list
             new_node.next = self.head
+            # set the current head's prev to the new node
             self.head.prev = new_node
+            # set the new node's next to the current head
+            # reassign self.head to point the new node
             self.head = new_node
 
 
@@ -93,8 +97,9 @@ class DoublyLinkedList:
     """Removes the input node from its current spot in the 
     List and inserts it as the new head node of the List."""
     def move_to_front(self, node):
+        # check if the node is already the head
         if node is self.head:
-            return
+            return None
         self.add_to_head(node.value)
         self.delete(node)
 
@@ -102,25 +107,32 @@ class DoublyLinkedList:
     List and inserts it as the new tail node of the List."""
     def move_to_end(self, node):
         if node is self.tail:
-            return
+            return None
         self.add_to_tail(node.value)
         self.delete(node)
 
     """Removes a node from the list and handles cases where
     the node was the head or the tail"""
     def delete(self, node):
+        if not self.head and not self.tail:
+            return None
         self.length -= 1
+        # checks if head and tail are the same, in which case there is only one node
         if self.head is self.tail:
             self.head = None
             self.tail = None
+        # check if the node is the head, move the head reference
         elif node is self.head:
             self.head = node.next
             node.delete()
+        # check if the node is the tail, move the tail reference
         elif node is self.tail:
             self.tail = node.prev
             node.delete()
+        # otherwise there's no additional references to update
         else:
             node.delete()
+        
         
     """Returns the highest value currently in the list"""
     def get_max(self):
