@@ -7,8 +7,7 @@ class LRUCache:
     to every node stored in the cache.
     """
     def __init__(self, limit=10):
-        pass
-
+        self.limit = limit
     """
     Retrieves the value associated with the given key. Also
     needs to move the key-value pair to the end of the order
@@ -30,4 +29,5 @@ class LRUCache:
     the newly-specified value.
     """
     def set(self, key, value):
+        print(key, value)
         pass
